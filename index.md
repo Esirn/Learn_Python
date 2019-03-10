@@ -188,11 +188,75 @@ g(3,4)
 ## 6.6 递归：阶乘、斐波那契、汉诺塔
 
 # 7 字典和集合
+## 7.1 字典：当索引不好用时
+与哈希（hash）、关系数组是一个概念。
+字典是Python中唯一的映射类型。
+### 7.1.1 创建和访问字典
+```
+a = dict(one=1,two=2,three=3)
+b = {'one':1 , 'two':2 , 'three':3}
+c = dict(zip(['one','two','three'],[1,2,3]))
+d = dict([('one',1),('two',2),('three',3)]) #dict(元组或列表)
+e = dict({'one':1 , 'two':2 , 'three':3})
+```
+### 7.1.2 各种内置方法
+- fromkeys()：创建新字典。
+- keys()/values()/items()：访问字典中的键/值/项（键与值）。
+- get()/setdefault()：前者找不到时返回none，可设定默认返回值。后者找不到时自动添加。
+- in/not in 操作符。
+- clear()：清空字典。赋值为空字典有风险：原字典并未被清空，只重定向至新字典。
+- copy()：复制字典。独立。
+- pop()/popitem()：删除项并显示。前者弹出对应键的值，后者弹出一个项。
+- update()：添加项。
+`**`打包解包。
 
+## 7.2 集合
+用大括号但没有映射关系。同样无序。会自动把重复元素清理掉。
+因为无序，所以列表转集合再转列表时会乱序。
+### 7.2.2 访问集合
+- 不能像序列一样用下标，只能用迭代。
+- in/not in。
+- add()/remove()：添加元素。删除已知元素。
+### 7.2.3 不可变集合
+frozenset()：像元组一样不能随意增加或删除元素。
 
+# 8 永久存储
+## 8.1 文件
+### 8.1.1 打开文件
+open(file , mode='r' , buffering=-1 , encoding=None , errors=None , newline=None , closefd=True , opener=None)
+f = open("record.txt")
+### 8.1.2 文件对象的方法
+### 8.1.3 文件的关闭
+close()。
+### 8.1.4 文件的读取和定位
+- read()/readline()
+- tell()
+- seek()
+- list()
+### 8.1.5 文件的写入
+w是重写，a是追加。
+### 8.1.6 一个任务
 
-
-
+## 8.2 文件系统
+import os
+- getcwd()：返回当前目录。
+- chdir(path)：改变当前目录。
+- listdir(path='.')：当前目录下的文件和文件夹。
+- mkdir(path)：创建新文件夹。
+- makedirs(path)：创建多层目录。
+- remove(path)/rmdir(path)/removedirs(path)：删除文件/目录/多层目录。
+- rename(old , new)
+- system(command)
+- walk(top)：遍历。
+- path模块。
+- basename(path)/dirname(path)：获取文件/路径名。
+- join(path1\[,path2\[,...]])：合并路径与文件名
+- split(path)/splitext(path)：前者分割路径与文件名，后者分割文件与扩展名。
+- getsize(file)：获取文件尺寸，单位Byte。
+- getatime(file)/getctime(file)/getmtime(file)：获取文件的最近访问、创建、修改时间。单位浮点型秒数，可用time模块的gmtime()/localtime()换算。
+## 8.3 pickle
+可以容易地将列表、字典这类复杂数据类型存储为文件。
+几乎可以把所有的Python对象转化为二进制的形式存放。pickling/unpickling。
 
 
 
